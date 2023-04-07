@@ -3,11 +3,16 @@ import pypistats
 from requests import get, exceptions
 from time import sleep
 from bs4 import BeautifulSoup
-from pandas import Series, DataFrame
+from pandas import Series, DataFrame, read_csv
 from tqdm import tqdm
 from datetime import datetime
 
 kaggle.api.authenticate()
+
+csv_df = read_csv("package_popularity.csv")
+csv_df["Is_Current"] = 0
+csv_df.to_csv("package_popularity.csv", index=False, lineterminator='\n')
+
 max_retries = 5
 wait_time = 3
 page_size = 100
@@ -83,6 +88,6 @@ for sort in sort_list:
     lib_counts_df = DataFrame({'Package': lib_series, 'Count': lib_series.groupby(lib_series).transform('count')})
     lib_counts_unique_df = lib_counts_df.drop_duplicates().reset_index(drop=True)
     lib_sorted_df = lib_counts_unique_df.sort_values(by='Count', ascending=False).reset_index(drop=True)
-    lib_csv_df = lib_sorted_df.assign(Sort=sort, Timestamp=datetime.now())
+    lib_csv_df = lib_sorted_df.assign(Sort=sort, Timestamp=datetime.now(), Is_Current=1)
     with open("package_popularity.csv", 'a') as f:
         lib_csv_df.to_csv(f, header=f.tell()==0, index=False, lineterminator='\n')
