@@ -1,11 +1,12 @@
 import kaggle
 import pypistats
-from requests import get, exceptions
-from time import sleep
+
 from bs4 import BeautifulSoup
-from pandas import Series, DataFrame, read_csv
-from tqdm import tqdm
 from datetime import datetime
+from pandas import Series, DataFrame, read_csv
+from requests import exceptions, get
+from time import sleep
+from tqdm import tqdm
 
 kaggle.api.authenticate()
 
