@@ -3,7 +3,7 @@ import pypistats
 
 from bs4 import BeautifulSoup
 from datetime import datetime
-from pandas import Series, DataFrame, read_csv
+from pandas import DataFrame, read_csv, Series
 from requests import exceptions, get
 from time import sleep
 from tqdm import tqdm
