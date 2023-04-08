@@ -17,6 +17,7 @@ def make_cube(
     vertical_perspective=0,
 ):
     img = Image.open(image)
+    img = Image.new("RGB", img.size, color="white")
     draw = ImageDraw.Draw(img)
 
     rad_vp = radians(vertical_perspective)
@@ -30,9 +31,11 @@ def make_cube(
         (x - edge_size, y + edge_size),  # Bottom-left
         (x - edge_size, y),  # Top-left
     ]
-    
+
     draw.polygon(cube_coords[:4], fill=color, outline=outline)  # Front face
-    draw.polygon(cube_coords[0:1] + cube_coords[3:6], fill=color, outline=outline)  # Side face
+    draw.polygon(
+        cube_coords[0:1] + cube_coords[3:6], fill=color, outline=outline
+    )  # Side face
 
     img.save("kpi-logo.png")
 
