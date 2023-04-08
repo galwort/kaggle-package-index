@@ -27,11 +27,14 @@ def make_cube(
         (x + edge_size, y),  # Top-right
         (x + edge_size, y + edge_size),  # Bottom-right
         (x, y + edge_size),  # Bottom-middle
+        (x - edge_size, y + edge_size),  # Bottom-left
+        (x - edge_size, y),  # Top-left
     ]
-
+    
     draw.polygon(cube_coords[:4], fill=color, outline=outline)  # Front face
+    draw.polygon(cube_coords[0:1] + cube_coords[3:6], fill=color, outline=outline)  # Side face
 
-    # img.save("kpi-logo.png")
+    img.save("kpi-logo.png")
 
 
 make_cube("kpi-logo.png", 200, 200)
