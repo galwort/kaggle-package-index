@@ -1,27 +1,32 @@
 from PIL import Image, ImageDraw
 from math import cos, radians
 
+
+def shade_color(color, shade=0.85):
+    return tuple(int(c * shade) for c in color)
+
+
 def make_cube(
     image,
     x,
     y,
-    size=20,
+    edge_size=20,
     color=(255, 255, 255),
     outline=(0, 0, 0),
     shaded=False,
-    vertical_perspective=57.29577951308232,
+    vertical_perspective=0,
 ):
     img = Image.open(image)
     draw = ImageDraw.Draw(img)
 
-    edge = size * 2
-    print(radians(vertical_perspective))
+    rad_vp = radians(vertical_perspective)
+    scaling = cos(rad_vp)
 
     cube_coords = [
         (x, y),  # Middle
-        (x + size * 3, y - size),  # Top-right
-        (x + size * 3, y + size * 3),  # Bottom-right
-        (x, y + edge),  # Bottom-middle
+        (x + edge_size, y),  # Top-right
+        (x + edge_size, y + edge_size),  # Bottom-right
+        (x, y + edge_size),  # Bottom-middle
     ]
 
     draw.polygon(cube_coords[:4], fill=color, outline=outline)  # Front face
