@@ -1,7 +1,8 @@
-from PIL import ImageDraw
+from PIL import Image, ImageDraw
 
 def make_cube(image, x, y, size=20, color=(255, 255, 255), outline=(0, 0, 0), shaded=False):
-    draw = ImageDraw.Draw(image)
+    img = Image.open(image)
+    draw = ImageDraw.Draw(img)
     
     cube_coords = [
         (x, y),                        # Front-left
@@ -25,4 +26,6 @@ def make_cube(image, x, y, size=20, color=(255, 255, 255), outline=(0, 0, 0), sh
     draw.line(cube_coords[3:5] + cube_coords[7:9], fill=outline, width=1)  # Back edge
     draw.line(cube_coords[4:6] + cube_coords[8:9] + cube_coords[0:1], fill=outline, width=1) # Bottom edge
 
-    image.save('kpi-logo.png') 
+    img.save('kpi-logo.png')
+
+make_cube('kpi-logo.png', 50, 50)
