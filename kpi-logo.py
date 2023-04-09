@@ -33,6 +33,7 @@ def make_cube(
     ]
 
     draw.polygon(cube_coords[:4], fill=color, outline=outline)  # Front face
+    color = shade_color(color) if shaded else color
     draw.polygon(
         cube_coords[0:1] + cube_coords[3:6], fill=color, outline=outline
     )  # Side face
@@ -40,4 +41,4 @@ def make_cube(
     img.save("kpi-logo.png")
 
 
-make_cube("kpi-logo.png", 200, 200)
+make_cube("kpi-logo.png", 200, 200, shaded=True)
