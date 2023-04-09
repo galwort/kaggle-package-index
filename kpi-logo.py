@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 
 def shade_color(color, shade=0.85):
@@ -41,10 +41,22 @@ def make_cube(
         cube_coords[0:1] + cube_coords[3:6], fill=color, outline=outline
     )  # Side face
     draw.polygon(
-        cube_coords[0:2] + cube_coords[6:7] + cube_coords[5:6], fill=color, outline=outline
+        cube_coords[0:2] + cube_coords[6:7] + cube_coords[5:6],
+        fill=color,
+        outline=outline,
     )  # Top face
 
     img.save("kpi-logo.png")
 
 
-make_cube("kpi-logo.png", 200, 200, 100, (32, 190, 255), shaded=True)
+def get_letter_coords(letter, font="Helvetica", size=20):
+    letter_img = Image.new("RGB", (size, size), color="white")
+    draw = ImageDraw.Draw(letter_img)
+    w, h = draw.textsize(letter, font=font)
+    return (size - w) // 2, (size - h) // 2
+
+
+print(get_letter_coords("k"))
+
+
+# make_cube("kpi-logo.png", 200, 200, 100, (32, 190, 255), shaded=True)
