@@ -61,10 +61,18 @@ def get_letter_coords(letter, font="arial.ttf", size=100):
     grayscale_img = ImageOps.grayscale(img)
     img = grayscale_img.point(lambda x: 0 if x < 128 else 255, "1")
 
-    return img.show()
+    letter_coords = []
+    pixels = img.getdata()
+    for i, pixel in enumerate(pixels):
+        if pixel == (0, 0, 0):
+            x = i % img.width
+            y = i // img.width
+            letter_coords.append((x, y))
+    return letter_coords
 
 
-get_letter_coords("k")
+list = get_letter_coords("k")
+print(list)
 
 
 # make_cube("kpi-logo.png", 200, 200, 100, (32, 190, 255), shaded=True)
