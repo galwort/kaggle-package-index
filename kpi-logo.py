@@ -71,11 +71,11 @@ def get_letter_coords(letter, font="arial.ttf", size=20):
     return sorted(letter_coords, key=lambda x: (x[0], x[1]))
 
 
-print(get_letter_coords("k"))
+print(get_letter_coords("i", size=10))
 
 
-def make_letter_logo(image_name, letter):
-    list = get_letter_coords(letter)
+def make_letter_logo(image_name, letter, font="arial.ttf", font_size=20):
+    list = get_letter_coords(letter, font=font, size=font_size)
     max_w = max(list, key=lambda x: x[0])[0]
     max_h = max(list, key=lambda x: x[1])[1]
     max_d = max(max_w, max_h) + 20
