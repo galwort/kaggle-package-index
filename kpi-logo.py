@@ -32,6 +32,7 @@ def make_cube(
         (x, y + edge_size),  # Bottom-middle
         (x - edge_size, y + edge_size - vc * edge_size),  # Bottom-left
         (x - edge_size, y - vc * edge_size),  # Top-left
+        (x, y - 2 * vc * edge_size),  # Top-middle
     ]
 
     draw.polygon(cube_coords[:4], fill=color, outline=outline)  # Front face
@@ -39,6 +40,9 @@ def make_cube(
     draw.polygon(
         cube_coords[0:1] + cube_coords[3:6], fill=color, outline=outline
     )  # Side face
+    draw.polygon(
+        cube_coords[0:2] + cube_coords[6:7] + cube_coords[5:6], fill=color, outline=outline
+    )  # Top face
 
     img.save("kpi-logo.png")
 
