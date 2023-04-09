@@ -47,4 +47,4 @@ def make_cube(
     img.save("kpi-logo.png")
 
 
-make_cube("kpi-logo.png", 200, 200, 100, shaded=True)
+make_cube("kpi-logo.png", 200, 200, 100, (32, 190, 255), shaded=True)
