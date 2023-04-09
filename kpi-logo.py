@@ -21,8 +21,8 @@ def make_cube(
         vertical_perspective = 90
     vc = vertical_perspective / 90
 
-    img = Image.open(image)
-    img = Image.new("RGB", img.size, color="white")
+    img_size = (edge_size * 3, edge_size * 3)
+    img = Image.new("RGB", img_size, color="white")
     draw = ImageDraw.Draw(img)
 
     cube_coords = [
@@ -46,7 +46,7 @@ def make_cube(
         outline=outline,
     )  # Top face
 
-    img.save("kpi-logo.png")
+    img.save(image + ".png", "PNG")
 
 
 def get_letter_coords(letter, font="arial.ttf", size=20):
@@ -82,6 +82,4 @@ def make_letter_logo(image_name, letter):
 
 
 
-
-
-# make_cube("kpi-logo.png", 200, 200, 100, (32, 190, 255), shaded=True)
+make_cube("kpi-logo", 150, 150, 100, (32, 190, 255), shaded=True)
