@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 def shade_color(color, shade=0.85):
@@ -49,7 +49,7 @@ def make_cube(
     img.save("kpi-logo.png")
 
 
-def get_letter_coords(letter, font="arial.ttf", size=20):
+def get_letter_coords(letter, font="arial.ttf", size=100):
     img = Image.new("RGB", (size, size), color="white")
     draw = ImageDraw.Draw(img)
     font_obj = ImageFont.truetype(font, size)
@@ -57,9 +57,14 @@ def get_letter_coords(letter, font="arial.ttf", size=20):
     x = (size - letter_w) // 2
     y = (size - letter_h) // 2
     draw.text((x, y), letter, font=font_obj, fill="black")
+
+    grayscale_img = ImageOps.grayscale(img)
+    img = grayscale_img.point(lambda x: 0 if x < 128 else 255, "1")
+
     return img.show()
 
-print(get_letter_coords("k"))
+
+get_letter_coords("k")
 
 
 # make_cube("kpi-logo.png", 200, 200, 100, (32, 190, 255), shaded=True)
