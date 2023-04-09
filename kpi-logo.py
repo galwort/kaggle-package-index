@@ -64,7 +64,7 @@ def get_letter_coords(letter, font="arial.ttf", size=100):
     letter_coords = []
     pixels = img.getdata()
     for i, pixel in enumerate(pixels):
-        if pixel == (0, 0, 0):
+        if pixel == 0:
             x = i % img.width
             y = i // img.width
             letter_coords.append((x, y))
