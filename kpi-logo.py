@@ -49,7 +49,7 @@ def make_cube(
     img.save("kpi-logo.png")
 
 
-def get_letter_coords(letter, font="arial.ttf", size=100):
+def get_letter_coords(letter, font="arial.ttf", size=20):
     img = Image.new("RGB", (size, size), color="white")
     draw = ImageDraw.Draw(img)
     font_obj = ImageFont.truetype(font, size)
@@ -70,9 +70,18 @@ def get_letter_coords(letter, font="arial.ttf", size=100):
             letter_coords.append((x, y))
     return letter_coords
 
+def make_letter_logo(image_name, letter):
+    list = get_letter_coords(letter)
+    max_w = max(list, key=lambda x: x[0])[0]
+    max_h = max(list, key=lambda x: x[1])[1]
+    max_d = max(max_w, max_h) + 20
 
-list = get_letter_coords("k")
-print(list)
+    img_size = (max_d, max_d)
+    img = Image.new("RGB", img_size, color="white")
+    draw = ImageDraw.Draw(img)
+
+
+
 
 
 # make_cube("kpi-logo.png", 200, 200, 100, (32, 190, 255), shaded=True)
