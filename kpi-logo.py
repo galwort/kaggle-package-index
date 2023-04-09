@@ -49,12 +49,15 @@ def make_cube(
     img.save("kpi-logo.png")
 
 
-def get_letter_coords(letter, font="Helvetica", size=20):
-    letter_img = Image.new("RGB", (size, size), color="white")
-    draw = ImageDraw.Draw(letter_img)
-    w, h = draw.textsize(letter, font=font)
-    return (size - w) // 2, (size - h) // 2
-
+def get_letter_coords(letter, font="arial.ttf", size=20):
+    img = Image.new("RGB", (size, size), color="white")
+    draw = ImageDraw.Draw(img)
+    font_obj = ImageFont.truetype(font, size)
+    letter_w, letter_h = draw.textsize(letter, font=font_obj)
+    x = (size - letter_w) // 2
+    y = (size - letter_h) // 2
+    draw.text((x, y), letter, font=font_obj, fill="black")
+    return img.show()
 
 print(get_letter_coords("k"))
 
