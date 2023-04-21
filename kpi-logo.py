@@ -53,7 +53,8 @@ def get_letter_coords(letter, font="arial.ttf", size=20):
     img = Image.new("RGB", (size, size), color="white")
     draw = ImageDraw.Draw(img)
     font_obj = ImageFont.truetype(font, size)
-    letter_w, letter_h = draw.textsize(letter, font=font_obj)
+    bbox = draw.textbbox((0, 0), letter, font=font_obj)  # Get bounding box
+    letter_w, letter_h = bbox[2] - bbox[0], bbox[3] - bbox[1]  # Calculate width and height
     x = (size - letter_w) // 2
     y = (size - letter_h) // 2
     draw.text((x, y), letter, font=font_obj, fill="black")
@@ -69,6 +70,7 @@ def get_letter_coords(letter, font="arial.ttf", size=20):
             y = i // img.width
             letter_coords.append((x, y))
     return sorted(letter_coords, key=lambda x: (x[0], x[1]))
+
 
 
 print(get_letter_coords("i", size=10))
