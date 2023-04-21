@@ -71,11 +71,6 @@ def get_letter_coords(letter, font="arial.ttf", size=20):
             letter_coords.append((x, y))
     return sorted(letter_coords, key=lambda x: (x[0], x[1]))
 
-
-
-print(get_letter_coords("i", size=10))
-
-
 def make_letter_logo(image_name, letter, font="arial.ttf", font_size=20):
     list = get_letter_coords(letter, font=font, size=font_size)
     max_w = max(list, key=lambda x: x[0])[0]
@@ -85,3 +80,7 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=20):
     img_size = (max_d, max_d)
     img = Image.new("RGB", img_size, color="white")
     draw = ImageDraw.Draw(img)
+
+    img.save(image_name + ".png", "PNG")
+
+make_letter_logo("kpi-logo.py", "i")
