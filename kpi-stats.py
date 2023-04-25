@@ -1,7 +1,7 @@
 import pypistats
 
 from httpx import HTTPStatusError
-from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt, ticker
 from matplotlib.dates import MonthLocator, DateFormatter
 from pandas import concat, DataFrame, read_csv, to_datetime
 
@@ -36,8 +36,12 @@ def get_pypi_downloads(packages, with_mirrors=True):
     return pypi_df
 
 
+def format_yticks(y, _):
+    return "{:,.0f}k".format(y / 1000)
+
+
 def plot_pypi_downloads(pypi_df):
-    fig, ax = plt.subplots(figsize=(16, 9))
+    _, ax = plt.subplots(figsize=(16, 9))
     pypi_df["date"] = to_datetime(pypi_df["date"])
     pypi_df = pypi_df.sort_values(by=["package", "date"])
     for package in pypi_df["package"].unique():
@@ -51,6 +55,8 @@ def plot_pypi_downloads(pypi_df):
     ax.xaxis.set_major_formatter(DateFormatter("%b %Y"))
 
     ax.set_ylabel("Downloads")
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(format_yticks))
+
     ax.set_title("Package Popularity Over Time")
     ax.legend()
     plt.show()
