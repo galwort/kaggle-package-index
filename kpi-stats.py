@@ -1,5 +1,6 @@
 import pypistats
 
+from httpx import HTTPStatusError
 from matplotlib import pyplot as plt
 from pandas import concat, DataFrame, read_csv
 
@@ -19,14 +20,17 @@ def get_kaggle_packages(packages=5, sort="all"):
 def get_pypi_downloads(packages, with_mirrors=True):
     pypi_df = DataFrame(columns=["package", "date", "downloads"])
     for package in packages:
-        x_df = pypistats.overall(package, total=True, format="pandas")
-        if with_mirrors:
-            x_df = x_df[x_df["category"] == "with_mirrors"]
-        else:
-            x_df = x_df[x_df["category"] == "without_mirrors"]
-        x_df = x_df[["date", "downloads"]]
-        x_df = x_df.assign(package=package)
-        pypi_df = concat([pypi_df, x_df])
+        try:
+            x_df = pypistats.overall(package, total=True, format="pandas")
+            if with_mirrors:
+                x_df = x_df[x_df["category"] == "with_mirrors"]
+            else:
+                x_df = x_df[x_df["category"] == "without_mirrors"]
+            x_df = x_df[["date", "downloads"]]
+            x_df = x_df.assign(package=package)
+            pypi_df = concat([pypi_df, x_df])
+        except HTTPStatusError:
+            print(f"'{package}' not on pypi")
 
     return pypi_df
 
@@ -47,4 +51,4 @@ def plot_pypi_downloads(pypi_df):
     plt.show()
 
 
-plot_pypi_downloads(get_pypi_downloads(get_kaggle_packages(10)))
+plot_pypi_downloads(get_pypi_downloads(get_kaggle_packages(6)))
