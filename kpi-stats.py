@@ -1,5 +1,7 @@
-from pandas import concat, DataFrame, read_csv
 import pypistats
+
+from matplotlib import pyplot as plt
+from pandas import concat, DataFrame, read_csv
 
 
 def get_kaggle_packages(packages=5, sort="all"):
@@ -29,4 +31,16 @@ def get_pypi_downloads(packages, with_mirrors=True):
     return pypi_df
 
 
-print(get_pypi_downloads(get_kaggle_packages()))
+def plot_pypi_downloads(pypi_df):
+    fig, ax = plt.subplots(figsize=(16, 9))
+    for package in pypi_df["package"].unique():
+        ax.plot(
+            pypi_df[pypi_df["package"] == package]["date"],
+            pypi_df[pypi_df["package"] == package]["downloads"],
+            label=package,
+        )
+    ax.legend()
+    plt.show()
+
+
+plot_pypi_downloads(get_pypi_downloads(get_kaggle_packages()))
