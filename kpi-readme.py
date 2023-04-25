@@ -37,7 +37,7 @@ with open("README.md", "w") as file:
             package_str = row.Package
         file.write("### " + str(i + 1) + ". " + package_str + "\n")
     for option in sorts:
-        file.write("#\n## By " + camel2lower(option) + ":\n")
+        file.write("\n\n## By " + camel2lower(option) + ":\n")
         sort_df = kpi_df[kpi_df["Sort"] == option]
         sort_df = sort_df.nlargest(10, "Count")
         for i, row in enumerate(sort_df.itertuples()):
