@@ -12,16 +12,17 @@
 10. [tqdm](https://pypi.org/project/tqdm)
 
 ## By hotness:
-1. [pandas](https://pypi.org/project/pandas) - 992 uses
-2. [numpy](https://pypi.org/project/numpy) - 965 uses
-3. [matplotlib](https://pypi.org/project/matplotlib) - 799 uses
-4. [sklearn](https://pypi.org/project/sklearn) - 645 uses
-5. os - 595 uses
-6. [seaborn](https://pypi.org/project/seaborn) - 470 uses
-7. warnings - 213 uses
-8. [tensorflow](https://pypi.org/project/tensorflow) - 150 uses
-9. [plotly](https://pypi.org/project/plotly) - 127 uses
-10. [xgboost](https://pypi.org/project/xgboost) - 109 uses
+### 1. [pandas](https://pypi.org/project/pandas) - 992 uses
+### 2. [numpy](https://pypi.org/project/numpy) - 965 uses
+### 3. [matplotlib](https://pypi.org/project/matplotlib) - 799 uses
+### 4. [sklearn](https://pypi.org/project/sklearn) - 645 uses
+### 5. os - 595 uses
+### 6. [seaborn](https://pypi.org/project/seaborn) - 470 uses
+### 7. warnings - 213 uses
+### 8. [tensorflow](https://pypi.org/project/tensorflow) - 150 uses
+### 9. [plotly](https://pypi.org/project/plotly) - 127 uses
+### 10. [xgboost](https://pypi.org/project/xgboost) - 109 uses
+
 
 ## By comment count:
 1. [pandas](https://pypi.org/project/pandas) - 987 uses
