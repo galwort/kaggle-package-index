@@ -2,7 +2,8 @@ import pypistats
 
 from httpx import HTTPStatusError
 from matplotlib import pyplot as plt
-from pandas import concat, DataFrame, read_csv
+from matplotlib.dates import MonthLocator, DateFormatter
+from pandas import concat, DataFrame, read_csv, to_datetime
 
 
 def get_kaggle_packages(packages=5, sort="all"):
@@ -37,6 +38,7 @@ def get_pypi_downloads(packages, with_mirrors=True):
 
 def plot_pypi_downloads(pypi_df):
     fig, ax = plt.subplots(figsize=(16, 9))
+    pypi_df["date"] = to_datetime(pypi_df["date"])
     pypi_df = pypi_df.sort_values(by=["package", "date"])
     for package in pypi_df["package"].unique():
         ax.plot(
@@ -45,10 +47,13 @@ def plot_pypi_downloads(pypi_df):
             label=package,
         )
     ax.set_xlabel("Date")
+    ax.xaxis.set_major_locator(MonthLocator())
+    ax.xaxis.set_major_formatter(DateFormatter("%b %Y"))
+
     ax.set_ylabel("Downloads")
     ax.set_title("Package Popularity Over Time")
     ax.legend()
     plt.show()
 
 
-plot_pypi_downloads(get_pypi_downloads(get_kaggle_packages(6)))
+plot_pypi_downloads(get_pypi_downloads(get_kaggle_packages(10, "hotness")))
