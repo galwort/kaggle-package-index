@@ -22,11 +22,9 @@ def make_cube(
         vertical_perspective = 90
     vc = vertical_perspective / 90
 
-    img_size = (edge_size * 3, edge_size * 3)
-    img = Image.new("RGB", img_size, color="white")
-
-    if path.isfile(image):
-        img = Image.open(image)
+    image_file = image + ".png"
+    if path.isfile(image_file):
+        img = Image.open(image_file)
     else:
         img_size = (edge_size * 3, edge_size * 3)
         img = Image.new("RGB", img_size, color="white")
@@ -54,7 +52,7 @@ def make_cube(
         outline=outline,
     )  # Top face
 
-    img.save(image + ".png", "PNG")
+    img.save(image_file, "PNG")
 
 
 def get_letter_coords(letter, font="arial.ttf", size=15):
