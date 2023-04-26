@@ -1,3 +1,4 @@
+from os import path
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
@@ -23,6 +24,13 @@ def make_cube(
 
     img_size = (edge_size * 3, edge_size * 3)
     img = Image.new("RGB", img_size, color="white")
+
+    if path.isfile(image):
+        img = Image.open(image)
+    else:
+        img_size = (edge_size * 3, edge_size * 3)
+        img = Image.new("RGB", img_size, color="white")
+
     draw = ImageDraw.Draw(img)
 
     cube_coords = [
@@ -87,7 +95,7 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
     img.save(image_name + ".png", "PNG")
 
     # for x, y in letter_coords:
-    #     make_cube(image_name, x, y, 20, (32, 190, 255), shaded=True)
+    #     make_cube(image_name, x, y, color=(32, 190, 255), shaded=True)
 
 
 make_letter_logo("kpi-logo", "i")
