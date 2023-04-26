@@ -77,10 +77,10 @@ def get_letter_coords(letter, font="arial.ttf", size=15):
 
 def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
     letter_coords = get_letter_coords(letter, font=font, size=font_size)
-    letter_coords = [(20 * x, 20 * y) for (x, y) in letter_coords]
+    letter_coords = [(100 * x, 100 * y) for (x, y) in letter_coords]
     max_w = max(letter_coords, key=lambda x: x[0])[0]
     max_h = max(letter_coords, key=lambda x: x[1])[1]
-    max_d = max(max_w, max_h) + 20
+    max_d = max(max_w, max_h) + 100
 
     img_size = [max_d, max_d]
     img = Image.new("RGB", img_size, color="white")
@@ -90,5 +90,4 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
     #     make_cube(image_name, x, y, 20, (32, 190, 255), shaded=True)
 
 
-print(get_letter_coords("i"))
-# make_letter_logo("kpi-logo", "i")
+make_letter_logo("kpi-logo", "i")
