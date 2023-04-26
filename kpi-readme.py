@@ -25,6 +25,12 @@ def camel2lower(camel_string):
 
 with open("README.md", "w") as file:
     file.write("# Kaggle-Package-Index\n")
+    file.write(
+        "The Kaggle Package Index reports the most popular python packages "
+        "used on Kaggle.com. We extract packages that are being imported "
+        "by parsing through kernels (notebooks) published on the site.\n"
+    )
+    file.write("<pre></br></pre>\n")
     file.write("## Overall:\n")
     overall_df = kpi_df.groupby("Package")["Count"].sum().reset_index()
     overall_df = overall_df.nlargest(10, "Count")
