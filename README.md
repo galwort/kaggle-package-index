@@ -11,6 +11,7 @@
 9. [plotly](https://pypi.org/project/plotly)
 10. [tqdm](https://pypi.org/project/tqdm)
 
+<pre></br></pre>
 ## By hotness:
 1. [pandas](https://pypi.org/project/pandas) - 992 uses
 2. [numpy](https://pypi.org/project/numpy) - 965 uses
@@ -23,6 +24,7 @@
 9. [plotly](https://pypi.org/project/plotly) - 127 uses
 10. [xgboost](https://pypi.org/project/xgboost) - 109 uses
 
+<pre></br></pre>
 ## By comment count:
 1. [pandas](https://pypi.org/project/pandas) - 987 uses
 2. [numpy](https://pypi.org/project/numpy) - 967 uses
@@ -35,6 +37,7 @@
 9. [scipy](https://pypi.org/project/scipy) - 204 uses
 10. [xgboost](https://pypi.org/project/xgboost) - 181 uses
 
+<pre></br></pre>
 ## By date created:
 1. [pandas](https://pypi.org/project/pandas) - 921 uses
 2. [numpy](https://pypi.org/project/numpy) - 912 uses
@@ -47,6 +50,7 @@
 9. [torch](https://pypi.org/project/torch) - 110 uses
 10. [scipy](https://pypi.org/project/scipy) - 102 uses
 
+<pre></br></pre>
 ## By score descending:
 1. [pandas](https://pypi.org/project/pandas) - 991 uses
 2. [sklearn](https://pypi.org/project/sklearn) - 792 uses
@@ -59,6 +63,7 @@
 9. [lightgbm](https://pypi.org/project/lightgbm) - 162 uses
 10. warnings - 134 uses
 
+<pre></br></pre>
 ## By view count:
 1. [pandas](https://pypi.org/project/pandas) - 916 uses
 2. [numpy](https://pypi.org/project/numpy) - 890 uses
@@ -71,6 +76,7 @@
 9. [keras](https://pypi.org/project/keras) - 154 uses
 10. [tensorflow](https://pypi.org/project/tensorflow) - 120 uses
 
+<pre></br></pre>
 ## By vote count:
 1. [pandas](https://pypi.org/project/pandas) - 946 uses
 2. [numpy](https://pypi.org/project/numpy) - 916 uses
