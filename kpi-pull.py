@@ -9,9 +9,9 @@ from tqdm import tqdm
 
 kaggle.api.authenticate()
 
-csv_df = read_csv("package_popularity.csv")
+csv_df = read_csv("kaggle_package_index.csv")
 csv_df["Is_Current"] = 0
-csv_df.to_csv("package_popularity.csv", index=False, lineterminator="\n")
+csv_df.to_csv("kaggle_package_index.csv", index=False, lineterminator="\n")
 
 max_retries = 5
 wait_time = 3
@@ -125,5 +125,5 @@ for sort in sort_list:
         by="Count", ascending=False
     ).reset_index(drop=True)
     lib_csv_df = lib_sorted_df.assign(Sort=sort, Timestamp=datetime.now(), Is_Current=1)
-    with open("package_popularity.csv", "a") as f:
+    with open("kaggle_package_index.csv", "a") as f:
         lib_csv_df.to_csv(f, header=f.tell() == 0, index=False, lineterminator="\n")
