@@ -54,7 +54,10 @@ def get_letter_coords(letter, font="arial.ttf", size=20):
     draw = ImageDraw.Draw(img)
     font_obj = ImageFont.truetype(font, size)
     bbox = draw.textbbox((0, 0), letter, font=font_obj)  # Get bounding box
-    letter_w, letter_h = bbox[2] - bbox[0], bbox[3] - bbox[1]  # Calculate width and height
+    letter_w, letter_h = (
+        bbox[2] - bbox[0],
+        bbox[3] - bbox[1],
+    )  # Calculate width and height
     x = (size - letter_w) // 2
     y = (size - letter_h) // 2
     draw.text((x, y), letter, font=font_obj, fill="black")
@@ -71,16 +74,20 @@ def get_letter_coords(letter, font="arial.ttf", size=20):
             letter_coords.append((x, y))
     return sorted(letter_coords, key=lambda x: (x[0], x[1]))
 
-def make_letter_logo(image_name, letter, font="arial.ttf", font_size=20):
-    list = get_letter_coords(letter, font=font, size=font_size)
-    max_w = max(list, key=lambda x: x[0])[0]
-    max_h = max(list, key=lambda x: x[1])[1]
+
+def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
+    letter_coords = get_letter_coords(letter, font=font, size=font_size)
+    letter_coords = [(20 * x, 20 * y) for (x, y) in letter_coords]
+    max_w = max(letter_coords, key=lambda x: x[0])[0]
+    max_h = max(letter_coords, key=lambda x: x[1])[1]
     max_d = max(max_w, max_h) + 20
 
-    img_size = (max_d, max_d)
+    img_size = [max_d, max_d]
     img = Image.new("RGB", img_size, color="white")
-    draw = ImageDraw.Draw(img)
-
     img.save(image_name + ".png", "PNG")
 
-make_letter_logo("kpi-logo.py", "i")
+    # for x, y in letter_coords:
+    #     make_cube(image_name, x, y, 20, (32, 190, 255), shaded=True)
+
+
+make_letter_logo("kpi-logo", "i")
