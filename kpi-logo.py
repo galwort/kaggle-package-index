@@ -86,6 +86,8 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
     letter_coords = [(100 * x, 100 * y) for (x, y) in letter_coords]
     max_w = max(letter_coords, key=lambda x: x[0])[0]
     max_h = max(letter_coords, key=lambda x: x[1])[1]
+    min_w = min(letter_coords, key=lambda x: x[0])[0]
+    min_h = min(letter_coords, key=lambda x: x[1])[1]
     max_d = max(max_w, max_h) + 100
 
     img_size = [max_d, max_d]
@@ -94,6 +96,11 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
 
     for x, y in letter_coords:
         make_cube(image_name, x, y, color=(32, 190, 255), shaded=True)
+
+    cropbox = (min_w - 100, min_h - 100, max_w + 100, max_h + 100)
+    img = Image.open(image_name + ".png")
+    img = img.crop(cropbox)
+    img.save(image_name + ".png", "PNG")
 
 
 make_letter_logo("kpi-logo", "k")
