@@ -10,7 +10,7 @@ def make_cube(
     image,
     x,
     y,
-    edge_size=20,
+    edge_size=100,
     color=(255, 255, 255),
     outline=(0, 0, 0),
     shaded=False,
@@ -92,8 +92,8 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
     img = Image.new("RGB", img_size, color="white")
     img.save(image_name + ".png", "PNG")
 
-    # for x, y in letter_coords:
-    #     make_cube(image_name, x, y, color=(32, 190, 255), shaded=True)
+    for x, y in letter_coords:
+        make_cube(image_name, x, y, color=(32, 190, 255), shaded=True)
 
 
 make_letter_logo("kpi-logo", "i")
