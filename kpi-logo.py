@@ -100,6 +100,16 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
     cropbox = (min_w - 100, min_h - 100, max_w + 100, max_h + 100)
     img = Image.open(image_name + ".png")
     img = img.crop(cropbox)
+    img = img.convert("RGBA")
+
+    datas = img.getdata()
+    newData = []
+    for item in datas:
+        if item[0] == 255 and item[1] == 255 and item[2] == 255:
+            newData.append((255, 255, 255, 0))
+        else:
+            newData.append(item)
+    img.putdata(newData)
     img.save(image_name + ".png", "PNG")
 
 
