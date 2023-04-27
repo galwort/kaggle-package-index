@@ -122,4 +122,4 @@ def make_letter_logo(image_name, letter, font="arial.ttf", font_size=15):
     img.save(image_name + ".png", "PNG")
 
 
-make_letter_logo("kpi-logo", "k")
+make_letter_logo("kpi-logo", "k", font_size=30)
