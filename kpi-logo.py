@@ -59,13 +59,9 @@ def get_letter_coords(letter, font="arial.ttf", size=15):
     img = Image.new("RGB", (size, size), color="white")
     draw = ImageDraw.Draw(img)
     font_obj = ImageFont.truetype(font, size)
-    bbox = draw.textbbox((0, 0), letter, font=font_obj)  # Get bounding box
-    letter_w, letter_h = (
-        bbox[2] - bbox[0],
-        bbox[3] - bbox[1],
-    )  # Calculate width and height
-    x = (size - letter_w) // 2
-    y = (size - letter_h) // 2
+    bbox = draw.textbbox((0, 0), letter, font=font_obj)
+    x = (size - bbox[2]) // 2
+    y = (size - bbox[3]) // 2
     draw.text((x, y), letter, font=font_obj, fill="black")
 
     grayscale_img = ImageOps.grayscale(img)
