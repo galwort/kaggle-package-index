@@ -1,10 +1,16 @@
 from pandas import read_csv
 from requests import get
+from datetime import datetime
 
 kpi_df = read_csv("kaggle-package-index.csv")
 kpi_df = kpi_df[kpi_df["Is_Current"] == 1]
 
 sorts = kpi_df["Sort"].unique().tolist()
+
+max_date = kpi_df["Timestamp"].max()
+max_date = str(
+    datetime.strptime(max_date, "%Y-%m-%d %H:%M:%S.%f").strftime("%B %d, %Y")
+)
 
 
 def pypi_exists(package):
@@ -62,3 +68,5 @@ with open("README.md", "w") as file:
             file.write(
                 str(i + 1) + ". " + package_str + " - " + str(row.Count) + " uses\n"
             )
+    file.write("<pre></br></pre>\n")
+    file.write("Last updated on " + max_date)
