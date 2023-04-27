@@ -1,4 +1,4 @@
-# <img src='kpi-logo.png' width='50'>aggle-package-index
+# <img src='kpi-logo.png' width='50' style='vertical-align: middle'>aggle-package-index
 The Kaggle Package Index reports the most popular python packages used on Kaggle.com. We extract packages that are being imported by parsing through kernels (notebooks) published on the site.
 <pre></br></pre>
 ## Overall:

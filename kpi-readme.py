@@ -24,7 +24,9 @@ def camel2lower(camel_string):
 
 
 with open("README.md", "w") as file:
-    file.write("# <img src='kpi-logo.png' width='50'>aggle-package-index\n")
+    file.write(
+        "# <img src='kpi-logo.png' width='50' style='vertical-align: middle'>aggle-package-index\n"
+    )
     file.write(
         "The Kaggle Package Index reports the most popular python packages "
         "used on Kaggle.com. We extract packages that are being imported "
