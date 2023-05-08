@@ -3,7 +3,8 @@ import pypistats
 from httpx import HTTPStatusError
 from matplotlib import pyplot as plt, ticker
 from matplotlib.dates import MonthLocator, DateFormatter
-from pandas import concat, DataFrame, read_csv, to_datetime
+from pandas import concat, DataFrame, read_csv, to_datetime, to_numeric
+from statsmodels.tsa.arima.model import ARIMA
 
 
 def get_kaggle_packages(packages=5, sort="all"):
@@ -62,4 +63,18 @@ def plot_pypi_downloads(pypi_df):
     plt.show()
 
 
-plot_pypi_downloads(get_pypi_downloads(get_kaggle_packages(10, "hotness")))
+# time series prediction
+def predict_package(package_df):
+    package_df["downloads"] = to_numeric(package_df["downloads"])
+    package_df = package_df.set_index("date")
+    model = ARIMA(package_df["downloads"], order=(1, 1, 1))
+    model_fit = model.fit()
+    prediction = model_fit.forecast()[0]
+
+    return prediction
+
+
+packages = ["langchain"]
+
+pypi_df = get_pypi_downloads(packages)
+predict_package(pypi_df)
