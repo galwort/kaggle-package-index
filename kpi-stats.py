@@ -63,13 +63,14 @@ def plot_pypi_downloads(pypi_df):
     plt.show()
 
 
-# time series prediction
 def predict_package(package_df):
     package_df["downloads"] = to_numeric(package_df["downloads"])
     package_df = package_df.set_index("date")
+    package_df.index = to_datetime(package_df.index)
+    package_df = package_df.resample("M").sum()
     model = ARIMA(package_df["downloads"], order=(1, 1, 1))
     model_fit = model.fit()
-    prediction = model_fit.forecast()[0]
+    prediction = model_fit.forecast()[1]
 
     return prediction
 
@@ -77,4 +78,5 @@ def predict_package(package_df):
 packages = ["langchain"]
 
 pypi_df = get_pypi_downloads(packages)
-predict_package(pypi_df)
+plot_pypi_downloads(pypi_df)
+print(predict_package(pypi_df))
